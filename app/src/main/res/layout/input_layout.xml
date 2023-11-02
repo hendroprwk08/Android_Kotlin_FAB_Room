@@ -12,7 +12,7 @@
         android:text="Nama"/>
 
     <EditText
-        android:id="@+id/et_nama"
+        android:id="@+id/et_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -22,10 +22,9 @@
         android:text="Kelas"
         android:layout_marginTop="10dp"/>
 
-    <Spinner
-        android:id="@+id/sp_keterangan"
+    <EditText
+        android:id="@+id/et_penulis"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/keterangan">
-    </Spinner>
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

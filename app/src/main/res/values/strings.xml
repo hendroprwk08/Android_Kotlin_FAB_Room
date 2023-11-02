@@ -3,11 +3,6 @@
     <string name="simpan">Simpan</string>
     <string name="tidak">Tidak</string>
     <string name="batal">Batal</string>
-
-    <string-array name="keterangan">
-        <item>Teman</item>
-        <item>Kampus</item>
-        <item>Keluarga</item>
-        <item>Komunitas</item>
-    </string-array>
+    <string name="judul">Judul</string>
+    <string name="penulis">Penulis</string>
 </resources>
