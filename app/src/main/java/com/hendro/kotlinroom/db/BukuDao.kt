@@ -14,8 +14,8 @@ interface BukuDao {
     @Insert
     fun insert(vararg buku: Buku)
 
-    @Delete
-    fun delete(buku: Buku)
+    @Query("DELETE FROM buku")
+    fun delete()
 
     @Update
     fun update(buku: Buku)

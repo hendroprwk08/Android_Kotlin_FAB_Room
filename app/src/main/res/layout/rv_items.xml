@@ -6,7 +6,7 @@
     android:padding="@dimen/dp_10">
 
     <TextView
-        android:id="@+id/tv_nama"
+        android:id="@+id/tv_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/judul"
@@ -14,7 +14,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_keterangan"
+        android:id="@+id/tv_penulis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/dp_2"

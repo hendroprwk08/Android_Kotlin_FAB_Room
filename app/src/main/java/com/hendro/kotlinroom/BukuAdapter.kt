@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hendro.kotlinroom.databinding.RvItemsBinding
 import com.hendro.kotlinroom.db.Buku
 
-class TemanAdapter (private var temanList: List<Buku>) :
-    RecyclerView.Adapter<TemanAdapter.MyViewHolder>(){
+class BukuAdapter (private var bukuList: List<Buku>) :
+    RecyclerView.Adapter<BukuAdapter.MyViewHolder>(){
 
     //binding layout: 1. ganti "binding: ItemRowLayoutBinding" dan "binding.root"
     class MyViewHolder(val binding: RvItemsBinding) : RecyclerView.ViewHolder(binding.root)
@@ -16,28 +16,23 @@ class TemanAdapter (private var temanList: List<Buku>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TemanAdapter.MyViewHolder {
+    ): BukuAdapter.MyViewHolder {
         //binding layout: 2. tarik layout
         val binding = RvItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TemanAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BukuAdapter.MyViewHolder, position: Int) {
         //binding layout: 3. letakkan nilai pada layout
-//        holder.binding.tvNama.text = temanList[position].nama()
-//        holder.binding.tvKeterangan.text = temanList[position].getKeterangan()
-//
-//        Glide.with(holder.itemView.context)
-//            .load(temanList[position].getGambar())
-//            .centerCrop()
-//            .into(holder.binding.imageview)
-//
-//        holder.itemView.setOnClickListener{
-//            Toast.makeText(holder.itemView.context, temanList[position].getNama(), Toast.LENGTH_SHORT).show()
-//        }
+        holder.binding.tvJudul.text = bukuList[position].judul
+        holder.binding.tvPenulis.text = bukuList[position].penulis
+
+        holder.itemView.setOnClickListener{
+            Toast.makeText(holder.itemView.context, bukuList[position].judul, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return bukuList.size
     }
 }
