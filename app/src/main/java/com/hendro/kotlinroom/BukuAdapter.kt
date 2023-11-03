@@ -1,5 +1,8 @@
 package com.hendro.kotlinroom
 
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -7,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hendro.kotlinroom.databinding.RvItemsBinding
 import com.hendro.kotlinroom.db.Buku
 
-class BukuAdapter (private var bukuList: List<Buku>) :
+class BukuAdapter (var context: Context, private var bukuList: List<Buku>) :
     RecyclerView.Adapter<BukuAdapter.MyViewHolder>(){
 
     //binding layout: 1. ganti "binding: ItemRowLayoutBinding" dan "binding.root"
@@ -26,9 +29,16 @@ class BukuAdapter (private var bukuList: List<Buku>) :
         //binding layout: 3. letakkan nilai pada layout
         holder.binding.tvJudul.text = bukuList[position].judul
         holder.binding.tvPenulis.text = bukuList[position].penulis
+        val _id: Int? = bukuList[position].id
 
-        holder.itemView.setOnClickListener{
-            Toast.makeText(holder.itemView.context, bukuList[position].judul, Toast.LENGTH_SHORT).show()
+        holder.binding.btDetil.setOnClickListener(){
+            val bundle = Bundle()
+            bundle.putInt("b_id", _id!!)
+
+            val intent = Intent(context, DetilActivity::class.java)
+            intent.putExtras(bundle)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent)
         }
     }
 

@@ -3,6 +3,7 @@ package com.hendro.kotlinroom
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Room
@@ -16,8 +17,6 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var inputLayoutBinding: InputLayoutBinding //bind dialog layout
-
-    lateinit var db: BukuDatabase
     private lateinit var bukuAdapter: BukuAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +34,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    companion object { // static behaviour
+        lateinit var db: BukuDatabase
+    }
+
     private fun displayData() {
         var bukuList: List<Buku> = db.bukuDao().getAllBooks()
 
+        Log.i("TAG", "displayData: ${bukuList.toString()}")
+
         //set recyclerview adapter
-        bukuAdapter = BukuAdapter(bukuList)
+        bukuAdapter = BukuAdapter( applicationContext ,bukuList)
 
         val layoutManager = GridLayoutManager(this, 1) //jumlah kolom 1
         binding.contentMain.recyclerView.layoutManager = layoutManager
@@ -77,12 +82,11 @@ class MainActivity : AppCompatActivity() {
     fun setSampleData(){
         if(db.bukuDao().getAllBooks().size == 0) {
             GlobalScope.launch {//memanggil function di dalam coroutine
-                db.bukuDao().delete()
                 db.bukuDao().insert(Buku("Bumi Manusia", "Pramoedya Ananta Toer"))
                 db.bukuDao().insert(Buku("Laskar Pelangi", "Andrea Hirata"))
                 db.bukuDao().insert(Buku("Anak Semua Bangsa", "Pramoedya Ananta Toer"))
                 db.bukuDao().insert(Buku("Negeri 5 Menara", "Ahmad Fuadi"))
-                db.bukuDao().insert(Buku(" Daun yang Jatuh Tak Pernah Membenci Angin", "Tere Liye"))
+                db.bukuDao().insert(Buku("Daun yang Jatuh Tak Pernah Membenci Angin", "Tere Liye"))
             }
         }
     }
